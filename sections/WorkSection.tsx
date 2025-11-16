@@ -20,7 +20,7 @@ const projects: Project[] = [
     title: ["HOMIE", "RENTAL", "APPLICATION"],
     client: "OWN PROJECT",
     categories: ["Flat", "House", "Rental"],
-    imageUrl: '/images/Homie Logo.jpg', // Check case: 'Homie Logo.jpg'
+    imageUrl: '/images/hhomie-logo.jpg', // Check case: 'Homie Logo.jpg'
     repoUrl: 'https://github.com/FraggyKnowsCode/Homie_Project' // <-- ADD YOUR LINK
   },
   {
@@ -28,7 +28,7 @@ const projects: Project[] = [
     title: ["AGRI HELP", "AI", "CHATBOT"],
     client: "Own Project",
     categories: ["AI", "Farmer", "Help"],
-    imageUrl: '/images/AgriHelp.png',
+    imageUrl: '/images/agri-help.png',
     repoUrl: 'https://v0-web-app-chatbot-integration.vercel.app/' // <-- ADD YOUR LINK
   },
   {
