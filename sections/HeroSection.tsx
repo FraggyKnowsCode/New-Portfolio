@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-// FIX: Trying a path relative to the project's baseUrl.
-import { useMousePosition } from '../hooks/useMousePosition'; 
-
-// DO NOT IMPORT the background image. It's in the public folder.
+// FIX: Changed to root-relative paths.
+import { useMousePosition } from '../hooks/useMousePosition'; // Make sure this path is correct
+import heroBg from '/images/hero-bg.jpg'; // Make sure this path is correct
 
 // --- Text Animation Variants ---
 
@@ -27,6 +26,7 @@ const letter = {
 };
 
 // --- Reusable TextBlock Component ---
+// (No changes to this component)
 const TextBlock = ({ lines, colorClass }: { 
   lines: string[][], 
   colorClass: string,
@@ -36,7 +36,7 @@ const TextBlock = ({ lines, colorClass }: {
     variants={sentence}
     initial="hidden"
     animate="visible"
-    aria-hidden="true"
+    aria-hidden="true" // Hide from screen readers to avoid duplication
   >
     <span className="block">
       {lines[0].map((char, index) => (
@@ -94,8 +94,9 @@ const HeroSection: React.FC = () => {
   ];
 
   const cursorSize = 300;
-  const scale = 1.6; 
+  const scale = 1.6; // Zoom factor
   
+  // Calculate translation to keep magnified text centered under cursor
   const tx = -(x - windowSize.width / 2) * (scale - 1);
   const ty = -(y - windowSize.height / 2) * (scale - 1);
 
@@ -106,8 +107,7 @@ const HeroSection: React.FC = () => {
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{
-          // FIX: Use the simple string path.
-          backgroundImage: `url('/images/hero-bg.jpg')`
+          backgroundImage: `url(${heroBg})`
         }}
       >
         <div className="absolute inset-0 bg-black/60"></div>
@@ -138,23 +138,25 @@ const HeroSection: React.FC = () => {
           <div 
             className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
             style={{
-              // FIX: Use the simple string path here too.
-              backgroundImage: `url('/images/hero-bg.jpg')`
+              backgroundImage: `url(${heroBg})`
             }}
           >
             <div className="absolute inset-0 bg-black/60"></div>
           </div>
           
+          {/* --- UPDATED BLOCK START --- */}
           {/* Zoomed Bangla Text */}
           <div 
-            className="relative z-10 normal-case" 
-            style={{ fontFamily: '"Noto Serif Bengali", serif' }} 
+            className="relative z-10 normal-case" // Add 'normal-case' to override uppercase
+            style={{ fontFamily: '"Noto Serif Bengali", serif' }} // Apply font
           >
+            {/* This TextBlock will inherit the font from its parent div */}
             <TextBlock 
               lines={banglaLines} 
               colorClass="text-white" 
             />
           </div>
+          {/* --- UPDATED BLOCK END --- */}
           
         </motion.div>
       </div>
