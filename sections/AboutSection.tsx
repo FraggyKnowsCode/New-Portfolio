@@ -1,9 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-// FIX: The import path must be relative.
-// This goes UP one level from 'sections' to the root,
-// then DOWN into the 'images' folder.
-import Profile from '../images/profile.jpg'; 
 
 const textVariant = {
   hidden: { opacity: 0, y: 20 },
@@ -20,9 +16,7 @@ const AboutSection: React.FC = () => {
           viewport={{ once: true, amount: 0.5 }}
           variants={textVariant}
         >
-          {/* FIX: Use the imported variable {Profile} in the src attribute. */}
-          <img src={Profile} alt="profile" className="rounded-lg shadow-2xl" />
-        </motion.div>
+        <img src="/images/profile.jpg" alt="Profile" className="rounded-lg shadow-2xl" />        </motion.div>
         <div>
           <motion.h2
             className="text-4xl md:text-6xl font-bold mb-6 text-white"
@@ -51,7 +45,7 @@ const AboutSection: React.FC = () => {
             variants={textVariant}
             transition={{ delay: 0.4 }}
           >
-            From startups to established enterprises, I partner with clients to push boundaries and. Let's create something amazing together.
+            From startups to established enterprises, I partner with clients to push boundaries and create work that not only looks great but also achieves business goals. Let's create something amazing together.
           </motion.p>
         </div>
       </div>

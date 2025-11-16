@@ -20,7 +20,7 @@ const projects: Project[] = [
     title: ["HOMIE", "RENTAL", "APPLICATION"],
     client: "OWN PROJECT",
     categories: ["Flat", "House", "Rental"],
-    imageUrl: '/images/hhomie-logo.jpg', // Check case: 'Homie Logo.jpg'
+    imageUrl: '/images/homie-logo.jpg', // Check case: 'Homie Logo.jpg'
     repoUrl: 'https://github.com/FraggyKnowsCode/Homie_Project' // <-- ADD YOUR LINK
   },
   {
