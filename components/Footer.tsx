@@ -71,17 +71,17 @@ const Footer: React.FC = () => {
         transition={{ staggerChildren: 0.1 }}
     >
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-12">
           {/* Column 1: Contact Info */}
           <motion.div className="lg:col-span-5" variants={itemVariant}>
             <MonopoLogo />
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-6">
               I would love to hear from you.
             </h2>
             <p className="text-gray-400 mb-8">
               Feel free to reach out if you want to collaborate with me, or simply have a chat.
             </p>
-            <a href="mailto:fahadsikder29@gmail.com" className="text-xl md:text-2xl font-medium hover:opacity-75 transition-opacity">
+            <a href="mailto:fahadsikder29@gmail.com" className="text-lg sm:text-xl md:text-2xl font-medium hover:opacity-75 transition-opacity">
               fahadsikder29@gmail.com &rarr;
             </a>
           </motion.div>

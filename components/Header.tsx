@@ -63,7 +63,7 @@ const Header: React.FC = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.header
-          className="fixed top-0 left-0 right-0 z-40"
+          className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md"
           initial={{ y: '-100%' }}
           animate={{
             y: '0%',
@@ -73,18 +73,18 @@ const Header: React.FC = () => {
           exit={{ y: '-100%' }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="container mx-auto px-4 sm:px-6 md:px-12 py-4 flex justify-between items-center">
             {/* --- UPDATED LINK --- */}
             <a 
               href="#home"
               onClick={(e) => handleNavClick(e, '#home')}
               // Applied font, increased size, removed bold/tracking
-              className="text-4xl text-white" 
+              className="text-3xl sm:text-4xl text-white" 
               style={{ fontFamily: '"Dr Sugiyama", cursive' }}
             >
               Fahad Sikder
             </a>
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className="hidden md:flex items-center space-x-4 sm:space-x-8">
               {navItems.map((item) => {
                 const href = `#${item.toLowerCase()}`;
                 return (

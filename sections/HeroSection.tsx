@@ -93,8 +93,8 @@ const HeroSection: React.FC = () => {
     "তৈরি করি!".split(""),
   ];
 
-  const cursorSize = 300;
-  const scale = 1.6; // Zoom factor
+  const cursorSize = windowSize.width < 768 ? 150 : 300; // Adjust bubble size for mobile
+  const scale = windowSize.width < 768 ? 1.2 : 1.6; // Adjust zoom factor for mobile
   
   // Calculate translation to keep magnified text centered under cursor
   const tx = -(x - windowSize.width / 2) * (scale - 1);
@@ -102,7 +102,6 @@ const HeroSection: React.FC = () => {
 
   return (
     <section id="home" className="h-screen relative overflow-hidden">
-      
       {/* --- 1. Background Image Layer (z-0) --- */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -114,7 +113,7 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* --- 2. English Layer (Base) - z-20 --- */}
-      <div className="absolute inset-0 flex items-center justify-center z-20" role="heading" aria-level={1}>
+      <div className="absolute inset-0 flex items-center justify-center z-20 px-4 md:px-0">
          <TextBlock lines={englishLines} colorClass="text-white" />
       </div>
 
@@ -147,10 +146,9 @@ const HeroSection: React.FC = () => {
           {/* --- UPDATED BLOCK START --- */}
           {/* Zoomed Bangla Text */}
           <div 
-            className="relative z-10 normal-case" // Add 'normal-case' to override uppercase
-            style={{ fontFamily: '"Noto Serif Bengali", serif' }} // Apply font
+            className="relative z-10 normal-case px-4 md:px-0"
+            style={{ fontFamily: '"Noto Serif Bengali", serif' }}
           >
-            {/* This TextBlock will inherit the font from its parent div */}
             <TextBlock 
               lines={banglaLines} 
               colorClass="text-white" 

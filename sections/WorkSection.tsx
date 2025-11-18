@@ -175,7 +175,7 @@ const WorkSection: React.FC = () => {
         </div>
 
         {/* Right Side: Images */}
-        <div className="w-3/5 h-[80vh] absolute right-[5%] top-1/2 -translate-y-1/2">
+        <div className="w-3/5 h-[80vh] absolute right-[5%] top-1/2 -translate-y-1/2 sm:w-2/3 sm:h-[60vh]">
           <AnimatePresence>
               <motion.div
                   key={activeProject.imageUrl}
@@ -192,12 +192,12 @@ const WorkSection: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-black/20"></div>
 
-                  {/* === UPDATED "Learn More" LINK === */}
+                  {/* Learn More Button */}
                   <a
-                    href={activeProject.repoUrl} // Use the dynamic URL
-                    target="_blank" // Open in a new tab
+                    href={activeProject.repoUrl}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 z-10"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 sm:w-36 sm:h-36 z-10"
                   >
                     <motion.div
                       className="w-full h-full bg-white rounded-full flex items-center justify-center text-black text-center font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-300 ease-in-out cursor-pointer"
@@ -205,8 +205,6 @@ const WorkSection: React.FC = () => {
                       Learn<br/>More!
                     </motion.div>
                   </a>
-                  {/* === END OF UPDATE === */}
-
               </motion.div>
           </AnimatePresence>
         </div>
