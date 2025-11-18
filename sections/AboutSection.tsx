@@ -36,8 +36,7 @@ const AboutSection: React.FC = () => {
             variants={textVariant}
             transition={{ delay: 0.2 }}
           >
-            I am a designer, developer, and strategist with a passion for crafting beautiful, functional, and memorable digital experiences that connect brands with their audiences.
-          </motion.p>
+I engineer compelling experiences, leveraging my skills as a designer, developer, and strategist to build digital solutions that are beautiful, functional, and memorable, forging strong connections between brands and their audiences. My diverse passions, from leading sports teams and singing to dedicating time to volunteer work, enrich my perspective and fuel my collaborative drive to make a positive impact.          </motion.p>
           <motion.p
             className="text-lg text-gray-300"
             initial="hidden"

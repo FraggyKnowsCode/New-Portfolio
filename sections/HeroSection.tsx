@@ -25,18 +25,56 @@ const letter = {
   },
 };
 
+// --- Typewriter Component ---
+const TypewriterText: React.FC<{ words: string[] }> = ({ words }) => {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+    const typingSpeed = isDeleting ? 50 : 100;
+    const pauseAfterWord = 2000;
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (displayedText.length < currentWord.length) {
+          setDisplayedText(currentWord.substring(0, displayedText.length + 1));
+        } else {
+          // Finished typing, pause then delete
+          setTimeout(() => setIsDeleting(true), pauseAfterWord);
+        }
+      } else {
+        // Deleting
+        if (displayedText.length > 0) {
+          setDisplayedText(currentWord.substring(0, displayedText.length - 1));
+        } else {
+          // Finished deleting, move to next word
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, currentWordIndex, words]);
+
+  return <span>{displayedText}<span className="animate-pulse">|</span></span>;
+};
+
 // --- Reusable TextBlock Component ---
-// (No changes to this component)
-const TextBlock = ({ lines, colorClass }: { 
+const TextBlock = ({ lines, colorClass, typewriterWords }: { 
   lines: string[][], 
   colorClass: string,
+  typewriterWords?: string[],
 }) => (
   <motion.h1
     className={`text-5xl md:text-8xl lg:text-9xl font-bold text-white uppercase tracking-tighter text-center`}
     variants={sentence}
     initial="hidden"
     animate="visible"
-    aria-hidden="true" // Hide from screen readers to avoid duplication
+    aria-hidden="true"
   >
     <span className="block">
       {lines[0].map((char, index) => (
@@ -53,11 +91,17 @@ const TextBlock = ({ lines, colorClass }: {
       ))}
     </span>
     <span className="block">
-      {lines[2].map((char, index) => (
-        <motion.span key={`l3-${char}-${index}`} variants={letter}>
-          {char}
+      {typewriterWords ? (
+        <motion.span variants={letter}>
+          <TypewriterText words={typewriterWords} />
         </motion.span>
-      ))}
+      ) : (
+        lines[2].map((char, index) => (
+          <motion.span key={`l3-${char}-${index}`} variants={letter}>
+            {char}
+          </motion.span>
+        ))
+      )}
     </span>
   </motion.h1>
 );
@@ -81,10 +125,12 @@ const HeroSection: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const typewriterWords = ['Experiences.','Journeys.', 'Connections.', 'Possibilities.', 'Frontiers.'];
+
   const englishLines = [
     "I make".split(""),
     "new".split(""),
-    "experiences.".split(""),
+    []
   ];
 
   const banglaLines = [
@@ -114,7 +160,7 @@ const HeroSection: React.FC = () => {
 
       {/* --- 2. English Layer (Base) - z-20 --- */}
       <div className="absolute inset-0 flex items-center justify-center z-20 px-4 md:px-0">
-         <TextBlock lines={englishLines} colorClass="text-white" />
+         <TextBlock lines={englishLines} colorClass="text-white" typewriterWords={typewriterWords} />
       </div>
 
       {/* --- 3. Bangla Layer (Clipped & Magnified) - z-30 --- */}

@@ -38,6 +38,7 @@ const customSmoothScroll = (targetId: string, duration: number = 1500) => {
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,8 +63,9 @@ const Header: React.FC = () => {
   return (
     <AnimatePresence>
       {isVisible && (
+        <>
         <motion.header
-          className="fixed top-0 left-0 right-0 z-40 bg-black/80 backdrop-blur-md"
+          className="fixed top-0 left-0 right-0 z-40"
           initial={{ y: '-100%' }}
           animate={{
             y: '0%',
@@ -74,16 +76,16 @@ const Header: React.FC = () => {
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
           <div className="container mx-auto px-4 sm:px-6 md:px-12 py-4 flex justify-between items-center">
-            {/* --- UPDATED LINK --- */}
             <a 
               href="#home"
               onClick={(e) => handleNavClick(e, '#home')}
-              // Applied font, increased size, removed bold/tracking
-              className="text-3xl sm:text-4xl text-white" 
+              className="text-3xl sm:text-4xl text-white"
               style={{ fontFamily: '"Dr Sugiyama", cursive' }}
             >
               Fahad Sikder
             </a>
+
+            {/* Desktop nav */}
             <nav className="hidden md:flex items-center space-x-4 sm:space-x-8">
               {navItems.map((item) => {
                 const href = `#${item.toLowerCase()}`;
@@ -99,8 +101,65 @@ const Header: React.FC = () => {
                 );
               })}
             </nav>
+
+            {/* Mobile burger button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setMenuOpen(true)}
+                aria-label="Open menu"
+                aria-expanded={menuOpen}
+                className="p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="block">
+                  <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor" />
+                  <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor" />
+                  <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor" />
+                </svg>
+              </button>
+            </div>
           </div>
         </motion.header>
+
+        {/* Mobile overlay menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center space-y-8 p-6"
+              aria-modal="true"
+              role="dialog"
+            >
+              <button
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+                className="absolute top-4 right-4 p-2 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 6L18 18M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              {navItems.map((item) => {
+                const href = `#${item.toLowerCase()}`;
+                return (
+                  <a
+                    key={item}
+                    href={href}
+                    onClick={(e) => { handleNavClick(e, href); setMenuOpen(false); }}
+                    className="text-3xl sm:text-4xl text-white font-semibold tracking-wide"
+                  >
+                    {item}
+                  </a>
+                );
+              })}
+
+              <a href="#contact" onClick={(e) => { handleNavClick(e, '#contact'); setMenuOpen(false); }} className="mt-6 text-white/80">Get in touch</a>
+            </motion.nav>
+          )}
+        </AnimatePresence>
+        </>
       )}
     </AnimatePresence>
   );

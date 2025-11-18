@@ -37,6 +37,18 @@ const Loader: React.FC = () => {
     },
   };
 
+  // Continuous floating animation
+  const floatingVariants: Variants = {
+    animate: {
+      y: [0, -10, 0],
+      transition: {
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
     <motion.div
       className="fixed inset-0 bg-black flex items-center justify-center z-50 p-4"
@@ -45,14 +57,27 @@ const Loader: React.FC = () => {
       exit="exit"
     >
       <motion.h1
-        className="text-4xl md:text-6xl font-light text-white tracking-wider flex flex-wrap justify-center items-baseline gap-x-3"
+        className="text-2xl sm:text-4xl md:text-6xl font-light text-white tracking-wider flex flex-wrap justify-center items-baseline gap-x-2 sm:gap-x-3"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Render each letter of the name as an animated, bolded span */}
         {name.map((char, index) => (
-          <motion.span key={`char-${index}`} variants={itemVariants} className="font-bold">
+          <motion.span 
+            key={`char-${index}`} 
+            variants={itemVariants} 
+            animate={{
+              y: [0, -10, 0],
+              transition: {
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: index * 0.1,
+              },
+            }}
+            className="font-bold"
+          >
             {char}
           </motion.span>
         ))}
@@ -63,7 +88,7 @@ const Loader: React.FC = () => {
           className="flex items-baseline gap-x-3"
         >
           <span className="font-light text-gray-400">|</span>
-          <span className="text-2xl md:text-4xl font-normal">Web Developer</span>
+          <span className="text-lg sm:text-2xl md:text-4xl font-normal">Tech Developer</span>
         </motion.span>
       </motion.h1>
     </motion.div>

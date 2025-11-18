@@ -1,74 +1,8 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 // FIX: Import Variants type from framer-motion to correctly type animation variants.
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, Variants } from 'framer-motion';
-// Make sure this path is correct
-import type { Project } from '../types'; 
-import fwmsImg from '../images/fwms.jpg';
-import homieLogo from '../images/homie-logo.jpg';
-import agriHelp from '../images/agri-help.png';
-import songsCover from '../images/songs-cover.png';
-import landMine from '../images/land-mine-detector.jpg';
-
-// --- Project Data Array ---
-// Make sure your 'Project' type includes 'repoUrl: string'
-const projects: Project[] = [
-  {
-    id: 1,
-    title: ["FOOD WASTE", "MANAGEMENT", "SYSTEM"],
-    client: "OWN PROJECT",
-    categories: ["Waste", "Management", "Clean"],
-    imageUrl: fwmsImg,
-    repoUrl: 'https://github.com/FraggyKnowsCode/FoodWasteManagementSystem' // <-- ADD YOUR LINK
-  },
-  {
-    id: 2,
-    title: ["HOMIE", "RENTAL", "APPLICATION"],
-    client: "OWN PROJECT",
-    categories: ["Flat", "House", "Rental"],
-    imageUrl: homieLogo, // Check case: 'Homie Logo.jpg'
-    repoUrl: 'https://github.com/FraggyKnowsCode/Homie_Project' // <-- ADD YOUR LINK
-  },
-  {
-    id: 3,
-    title: ["AGRI HELP", "AI", "CHATBOT"],
-    client: "Own Project",
-    categories: ["AI", "Farmer", "Help"],
-    imageUrl: agriHelp,
-    repoUrl: 'https://v0-web-app-chatbot-integration.vercel.app/' // <-- ADD YOUR LINK
-  },
-  {
-    id: 4,
-    title: ["MY", "COVERED", "SONGS"],
-    client: "My Music Covers",
-    categories: ["Songs", "Covers", "Music"],
-    imageUrl: songsCover,
-    repoUrl: 'https://github.com/your-username/web-conf-repo' // <-- ADD YOUR LINK
-  },
-  {
-    id: 5,
-    title: ["LAND", "MINE", "DETECTOR"],
-    client: "OWN PROJECT",
-    categories: ["LandMine", "CPI", "Robotics"],
-    imageUrl: landMine,
-    repoUrl: 'https://github.com/FraggyKnowsCode/Land-Mine-Detector' // <-- ADD YOUR LINK
-  },
-  // {
-  //   id: 6,
-  //   title: ["FOOD WASTE", "MANAGEMENT", "SYSTEM"],
-  //   client: "OWN PROJECT",
-  //   categories: ["Waste", "Management", "Clean"],
-  //   imageUrl: '/images/fwms.jpg',
-  //   repoUrl: 'https://github.com/FraggyKnowsCode/FoodWasteManagementSystem' // <-- ADD YOUR LINK
-  // },
-  // {
-  //   id: 7,
-  //   title: ["FOOD WASTE", "MANAGEMENT", "SYSTEM"],
-  //   client: "OWN PROJECT",
-  //   categories: ["Waste", "Management", "Clean"],
-  //   imageUrl: '/images/fwms.jpg',
-  //   repoUrl: 'https://github.com/FraggyKnowsCode/FoodWasteManagementSystem' // <-- ADD YOUR LINK
-  // },
-];
+import { projects } from '../data/projectsData';
 
 // --- Animation Variants ---
 
@@ -212,7 +146,10 @@ const WorkSection: React.FC = () => {
       
       {/* Bottom "Discover All" Button */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
-        <button className="px-6 py-3 border border-gray-500 rounded-full text-gray-300 hover:bg-white hover:text-black transition-colors duration-300 text-sm">
+        <button 
+          onClick={() => window.location.href = '/projects'}
+          className="px-6 py-3 border border-gray-500 rounded-full text-gray-300 hover:bg-white hover:text-black transition-colors duration-300 text-sm cursor-pointer"
+        >
           DISCOVER ALL PROJECTS &rarr;
         </button>
       </div>

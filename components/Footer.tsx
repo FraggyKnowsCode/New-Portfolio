@@ -174,7 +174,7 @@ const Footer: React.FC = () => {
           {/* Column 4: Sitemap */}
           <motion.div className="lg:col-span-2 text-sm" variants={itemVariant}>
              <ul className="space-y-2 text-gray-300">
-                <li><a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="hover:text-white font-bold text-white transition-colors"><span className="mr-2"></span>HOME</a></li>
+                <li><a href="#home" onClick={(e) => handleNavClick(e, '#home')} className="hover:text-white font-bold text-white transition-colors"><span className="mr-2">HOME</span></a></li>
                 <li><a href="#work" onClick={(e) => handleNavClick(e, '#work')} className="hover:text-white transition-colors">WORK</a></li>
                 <li><a href="#about" onClick={(e) => handleNavClick(e, '#about')} className="hover:text-white transition-colors">ABOUT</a></li>
                 <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-white transition-colors">CONTACT</a></li>
