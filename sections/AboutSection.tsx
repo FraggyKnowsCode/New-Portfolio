@@ -1,4 +1,5 @@
 import React from 'react';
+import profileImg from '../images/profile.jpg';
 import { motion } from 'framer-motion';
 
 const textVariant = {
@@ -16,7 +17,7 @@ const AboutSection: React.FC = () => {
           viewport={{ once: true, amount: 0.5 }}
           variants={textVariant}
         >
-        <img src="/images/profile.jpg" alt="Profile" className="rounded-lg shadow-2xl" />        </motion.div>
+        <img src={profileImg} alt="Profile" className="rounded-lg shadow-2xl" />        </motion.div>
         <div>
           <motion.h2
             className="text-4xl md:text-6xl font-bold mb-6 text-white"

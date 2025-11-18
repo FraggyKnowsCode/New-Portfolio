@@ -3,6 +3,11 @@ import React, { useState, useRef } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, Variants } from 'framer-motion';
 // Make sure this path is correct
 import type { Project } from '../types'; 
+import fwmsImg from '../images/fwms.jpg';
+import homieLogo from '../images/homie-logo.jpg';
+import agriHelp from '../images/agri-help.png';
+import songsCover from '../images/songs-cover.png';
+import landMine from '../images/land-mine-detector.jpg';
 
 // --- Project Data Array ---
 // Make sure your 'Project' type includes 'repoUrl: string'
@@ -12,7 +17,7 @@ const projects: Project[] = [
     title: ["FOOD WASTE", "MANAGEMENT", "SYSTEM"],
     client: "OWN PROJECT",
     categories: ["Waste", "Management", "Clean"],
-    imageUrl: '/images/fwms.jpg',
+    imageUrl: fwmsImg,
     repoUrl: 'https://github.com/FraggyKnowsCode/FoodWasteManagementSystem' // <-- ADD YOUR LINK
   },
   {
@@ -20,7 +25,7 @@ const projects: Project[] = [
     title: ["HOMIE", "RENTAL", "APPLICATION"],
     client: "OWN PROJECT",
     categories: ["Flat", "House", "Rental"],
-    imageUrl: '/images/homie-logo.jpg', // Check case: 'Homie Logo.jpg'
+    imageUrl: homieLogo, // Check case: 'Homie Logo.jpg'
     repoUrl: 'https://github.com/FraggyKnowsCode/Homie_Project' // <-- ADD YOUR LINK
   },
   {
@@ -28,7 +33,7 @@ const projects: Project[] = [
     title: ["AGRI HELP", "AI", "CHATBOT"],
     client: "Own Project",
     categories: ["AI", "Farmer", "Help"],
-    imageUrl: '/images/agri-help.png',
+    imageUrl: agriHelp,
     repoUrl: 'https://v0-web-app-chatbot-integration.vercel.app/' // <-- ADD YOUR LINK
   },
   {
@@ -36,7 +41,7 @@ const projects: Project[] = [
     title: ["MY", "COVERED", "SONGS"],
     client: "My Music Covers",
     categories: ["Songs", "Covers", "Music"],
-    imageUrl: '/images/songs-cover.png',
+    imageUrl: songsCover,
     repoUrl: 'https://github.com/your-username/web-conf-repo' // <-- ADD YOUR LINK
   },
   {
@@ -44,7 +49,7 @@ const projects: Project[] = [
     title: ["LAND", "MINE", "DETECTOR"],
     client: "OWN PROJECT",
     categories: ["LandMine", "CPI", "Robotics"],
-    imageUrl: '/images/land-mine-detector.jpg',
+    imageUrl: landMine,
     repoUrl: 'https://github.com/FraggyKnowsCode/Land-Mine-Detector' // <-- ADD YOUR LINK
   },
   // {
