@@ -186,8 +186,8 @@ const Footer: React.FC = () => {
         <div className="mt-20 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
             <p className="mb-4 md:mb-0 text-center md:text-left">&copy; MD FAHAD SIKDER 2025 All rights reserved</p>
             <button 
-                onClick={handleScrollToTop}
-                className="w-20 h-20 border border-gray-600 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="w-20 h-20 border border-gray-600 rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors cursor-pointer"
                 aria-label="Scroll to top"
             >
                 TOP &uarr;

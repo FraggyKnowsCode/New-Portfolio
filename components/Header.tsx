@@ -77,9 +77,12 @@ const Header: React.FC = () => {
         >
           <div className="container mx-auto px-4 sm:px-6 md:px-12 py-4 flex justify-between items-center">
             <a 
-              href="#home"
-              onClick={(e) => handleNavClick(e, '#home')}
-              className="text-3xl sm:text-4xl text-white"
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.href = '/';
+              }}
+              className="text-3xl sm:text-4xl text-white cursor-pointer"
               style={{ fontFamily: '"Dr Sugiyama", cursive' }}
             >
               Fahad Sikder
@@ -141,6 +144,13 @@ const Header: React.FC = () => {
                 </svg>
               </button>
 
+              <a
+                href="/"
+                onClick={(e) => { e.preventDefault(); window.location.href = '/'; setMenuOpen(false); }}
+                className="text-3xl sm:text-4xl text-white font-semibold tracking-wide"
+              >
+                Home
+              </a>
               {navItems.map((item) => {
                 const href = `#${item.toLowerCase()}`;
                 return (
