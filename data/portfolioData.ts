@@ -3,6 +3,11 @@
 // Update any metric, text or URL in this file and every section
 // that references it will reflect the change automatically.
 // ============================================================
+import homieImg from '../images/Homie.png';
+import adezyImg from '../images/adezy.png';
+import agriHelpImg from '../images/agri-help.png';
+import refoodImg from '../images/ReFood.png';
+import landMineImg from '../images/land-mine-detector.jpg';
 
 // ─── Social Links ────────────────────────────────────────────
 export const socialLinks = {
@@ -147,7 +152,7 @@ export const projectsDataEnhanced: ProjectData[] = [
       { label: 'LISTING & TENANT WORKFLOW', value: 'Verified' },
     ],
     techStack: ['Python', 'Django', 'Full-Stack Web', 'Search & Filtering'],
-    imageUrl: '/images/Homie.png',
+    imageUrl: homieImg,
     repoUrl: 'https://github.com/FraggyKnowsCode/Homie_Project',
     websiteUrl: 'https://homie-beta-kohl.vercel.app/',
   },
@@ -165,7 +170,7 @@ export const projectsDataEnhanced: ProjectData[] = [
       { label: 'MODERN WEB ARCHITECTURE', value: 'Responsive' },
     ],
     techStack: ['Python', 'Django', 'Responsive UI', 'Analytics'],
-    imageUrl: '/images/adezy.png',
+    imageUrl: adezyImg,
     repoUrl: 'https://github.com/FraggyKnowsCode/AdEzy',
     websiteUrl: 'https://adezy.vercel.app/',
   },
@@ -183,7 +188,7 @@ export const projectsDataEnhanced: ProjectData[] = [
       { label: 'ACCESSIBLE CHAT INTERFACE', value: 'Bilingual' },
     ],
     techStack: ['Python', 'NLP', 'Conversational AI', 'AgriTech'],
-    imageUrl: '/images/agri-help.png',
+    imageUrl: agriHelpImg,
     repoUrl: 'https://v0-web-app-chatbot-integration.vercel.app/',
   },
   {
@@ -200,7 +205,7 @@ export const projectsDataEnhanced: ProjectData[] = [
       { label: 'COMMUNITY RECOVERY FLOW', value: 'Zero-Waste' },
     ],
     techStack: ['Python', 'Django', 'Dashboard UI', 'Impact Tracking'],
-    imageUrl: '/images/ReFood.png',
+    imageUrl: refoodImg,
     repoUrl: 'https://github.com/FraggyKnowsCode/FoodWasteManagementSystem',
     websiteUrl: 'https://refood-hazel.vercel.app/',
   },
@@ -218,7 +223,7 @@ export const projectsDataEnhanced: ProjectData[] = [
       { label: 'REMOTE SAFETY PROTOTYPE', value: 'Hardware' },
     ],
     techStack: ['Arduino', 'Embedded C/C++', 'Robotics CPI', 'Hardware Sensors'],
-    imageUrl: '/images/land-mine-detector.jpg',
+    imageUrl: landMineImg,
     repoUrl: 'https://github.com/FraggyKnowsCode/Land-Mine-Detector',
   },
 ];
