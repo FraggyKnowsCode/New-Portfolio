@@ -1,0 +1,413 @@
+/* ============================================================
+   index.css: Design System & Architectural Grid Tokens
+   Bridges the existing dark-mode palette with editorial hairline
+   grid aesthetic. All custom fonts and CSS custom properties.
+   ============================================================ */
+
+/* ─── Google Fonts Imports ──────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@700;800&family=Space+Grotesk:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ─── CSS Custom Properties (Design Tokens) ─────────────────── */
+:root {
+  /* Colors */
+  --bg-canvas: #000000;
+  --bg-surface: #09090B;
+  --bg-glass: rgba(12, 12, 14, 0.78);
+  --border-hairline: rgba(255, 255, 255, 0.14);
+  --border-hover: #3F3F46;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B3B3B3;
+  --text-muted: #71717A;
+  --accent-orange: #F06A35;
+  --accent-amber: #F59E0B;
+
+  /* Typography */
+  --font-serif: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+  --font-display: 'Syne', 'Space Grotesk', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-brand: 'Dr Sugiyama', cursive;
+
+  /* Spacing */
+  --cell-padding-desktop: 2.5rem;
+  --cell-padding-mobile: 1.5rem;
+}
+
+/* ─── Base Reset & Body ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Architectural Section Index Bar ─────────────────────────── */
+.section-index-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-hairline);
+  margin-bottom: 2rem;
+}
+
+.section-index-bar .index-left {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-index-bar .index-left .accent-square {
+  color: var(--accent-orange);
+  font-size: 14px;
+}
+
+.section-index-bar .index-right {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+/* ─── Hairline Dividers ──────────────────────────────────────── */
+.hairline-border-t {
+  border-top: 1px solid var(--border-hairline);
+}
+
+.hairline-border-b {
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.hairline-border-l {
+  border-left: 1px solid var(--border-hairline);
+}
+
+.hairline-border-r {
+  border-right: 1px solid var(--border-hairline);
+}
+
+/* ─── Font Classes ───────────────────────────────────────────── */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-brand {
+  font-family: var(--font-brand);
+}
+
+/* ─── Editorial Metric Number ────────────────────────────────── */
+.metric-number {
+  font-family: var(--font-serif);
+  color: var(--text-primary);
+  line-height: 1;
+  font-weight: 400;
+}
+
+.metric-number .accent-suffix {
+  color: var(--accent-orange);
+}
+
+/* ─── Micro Label ────────────────────────────────────────────── */
+.micro-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+/* ─── Tech Badge ─────────────────────────────────────────────── */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ─── Status Badge ───────────────────────────────────────────── */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  border: 1px solid;
+}
+
+.status-badge.published {
+  color: #4ade80;
+  border-color: rgba(74, 222, 128, 0.3);
+  background: rgba(74, 222, 128, 0.08);
+}
+
+.status-badge.accepted {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.45);
+  background: rgba(16, 185, 129, 0.12);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.18);
+}
+
+.status-badge.active {
+  color: var(--accent-amber);
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.status-badge .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ─── Bento Grid Cell ────────────────────────────────────────── */
+.bento-cell {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  padding: var(--cell-padding-desktop);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.bento-cell:hover {
+  border-color: var(--border-hover);
+  background: rgba(12, 12, 14, 0.9);
+}
+
+@media (max-width: 768px) {
+  .bento-cell {
+    padding: var(--cell-padding-mobile);
+  }
+}
+
+/* ─── Hero Pillar Bar ────────────────────────────────────────── */
+.hero-pillar-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 25;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-hairline);
+  padding: 0.75rem 1.5rem;
+}
+
+.hero-pillar-bar .pillar-items {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-pillar-bar .pillar-item {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .hero-pillar-bar {
+    padding: 0.5rem 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hero-pillar-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .hero-pillar-bar .pillar-items {
+    gap: 1.25rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+  .hero-pillar-bar .pillar-item {
+    font-size: 8.5px;
+    flex-shrink: 0;
+  }
+}
+
+/* ─── Count-up Animation ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .count-up-animated {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ─── Research Architecture Card ──────────────────────────────── */
+.research-arch-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  padding: var(--cell-padding-desktop);
+  position: relative;
+  overflow: hidden;
+}
+
+.research-arch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── Pipeline Diagram ───────────────────────────────────────── */
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-hairline);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.pipeline-step::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  flex-shrink: 0;
+}
+
+.pipeline-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0;
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+/* ─── Section Wrapper ────────────────────────────────────────── */
+.editorial-section {
+  padding: 4rem 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .editorial-section {
+    padding: 6rem 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .editorial-section {
+    padding: 8rem 3rem;
+  }
+}
+
+/* ─── Scroll to Top Button ───────────────────────────────────── */
+.scroll-top-btn {
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.scroll-top-btn:hover {
+  background: var(--text-primary);
+  color: var(--bg-canvas);
+  border-color: var(--text-primary);
+}
+
+/* ─── Action Link ────────────────────────────────────────────── */
+.action-link {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.action-link:hover {
+  color: var(--accent-orange);
+}
+
+/* ─── Custom Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hairline);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}

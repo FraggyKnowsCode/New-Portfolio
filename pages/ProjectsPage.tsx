@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { projects } from '../data/projectsData';
+import { projectsDataEnhanced } from '../data/portfolioData';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -19,7 +19,7 @@ const cardVariants = {
 
 const ProjectsPage: React.FC = () => {
   return (
-    <div className="bg-black min-h-screen">
+    <div style={{ background: 'var(--bg-canvas)' }} className="min-h-screen">
       <Header />
       
       <main className="pt-32 pb-20 px-6 md:px-12">
@@ -31,74 +31,111 @@ const ProjectsPage: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="mb-16 text-center"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-white mb-6">
+            <h1
+              className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter text-white mb-6"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               All Projects
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Explore my complete portfolio of projects, from web applications to innovative solutions.
+            <p className="text-xl max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
+              Explore the complete portfolio of full-stack platforms, ML systems and hardware builds.
             </p>
           </motion.div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+            {projectsDataEnhanced.map((project, index) => (
               <motion.div
                 key={project.id}
                 custom={index}
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
-                whileHover={{ y: -10 }}
-                className="group relative bg-gray-900 rounded-lg overflow-hidden cursor-pointer"
+                className="group relative overflow-hidden"
+                style={{ border: '1px solid var(--border-hairline)' }}
               >
                 {/* Project Image */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-64 overflow-hidden" style={{ background: 'var(--bg-surface)' }}>
                   <img
                     src={project.imageUrl}
                     alt={project.title.join(' ')}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-contain md:object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300"></div>
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300" />
                 </div>
 
                 {/* Project Info */}
-                <div className="p-6">
-                  <h3 className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mb-2">
+                <div style={{ padding: 'var(--cell-padding-desktop)' }}>
+                  {/* Category Tag */}
+                  <span className="micro-label block mb-2">{project.categoryTag}</span>
+
+                  <h3
+                    className="text-2xl md:text-3xl font-bold uppercase tracking-tight text-white mb-2"
+                    style={{ fontFamily: 'var(--font-display)' }}
+                  >
                     {project.title.join(' ')}
                   </h3>
-                  <p className="text-sm text-gray-400 mb-4">{project.client}</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.categories.map((category, idx) => (
-                      <span
+
+                  <p className="text-[13px] leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                    {project.summary}
+                  </p>
+
+                  {/* 3-Column Metric Strip */}
+                  <div
+                    className="grid grid-cols-3 gap-0 mb-4"
+                    style={{ border: '1px solid var(--border-hairline)' }}
+                  >
+                    {project.metrics.map((metric, idx) => (
+                      <div
                         key={idx}
-                        className="px-3 py-1 text-xs bg-gray-800 text-gray-300 rounded-full"
+                        className="py-2 px-2 text-center"
+                        style={{
+                          borderLeft: idx > 0 ? '1px solid var(--border-hairline)' : undefined,
+                        }}
                       >
-                        {category}
+                        <span
+                          className="block text-[12px] font-semibold text-white"
+                          style={{ fontFamily: 'var(--font-serif)' }}
+                        >
+                          {metric.value}
+                        </span>
+                        <span className="micro-label block mt-0.5" style={{ fontSize: '7.5px' }}>
+                          {metric.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.techStack.map((tech, idx) => (
+                      <span key={idx} className="tech-badge">
+                        {tech}
                       </span>
                     ))}
                   </div>
                   
-                  {/* View Project Button */}
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-colors duration-300"
-                  >
-                    View Project
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5 ml-2"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
+                  {/* Action Links */}
+                  <div className="flex gap-4">
+                    {project.websiteUrl && (
+                      <a
+                        href={project.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="action-link text-[12px]"
+                      >
+                        Live Demo <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                      </a>
+                    )}
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="action-link text-[12px]"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </a>
+                      GitHub <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             ))}

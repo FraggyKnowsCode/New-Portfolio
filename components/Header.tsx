@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
+import { navItems, socialLinks } from '../data/portfolioData';
 
 // --- Custom Smooth Scroll Implementation ---
 const easeInOutQuad = (t: number): number => {
@@ -35,10 +37,81 @@ const customSmoothScroll = (targetId: string, duration: number = 1500) => {
 };
 // --- End Custom Smooth Scroll ---
 
+// Social icon components
+const SocialIcons: React.FC<{ size?: number; className?: string }> = ({ size = 20, className = '' }) => (
+  <div className={`flex items-center space-x-4 ${className}`}>
+    {/* Facebook */}
+    <a
+      href={socialLinks.facebook}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="transition-colors duration-300"
+      style={{ color: 'var(--text-muted)' }}
+      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-orange)')}
+      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+      aria-label="Facebook"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+      </svg>
+    </a>
+    {/* Instagram */}
+    <a
+      href={socialLinks.instagram}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="transition-colors duration-300"
+      style={{ color: 'var(--text-muted)' }}
+      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-orange)')}
+      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+      aria-label="Instagram"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+      </svg>
+    </a>
+    {/* LinkedIn */}
+    <a
+      href={socialLinks.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="transition-colors duration-300"
+      style={{ color: 'var(--text-muted)' }}
+      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-orange)')}
+      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+      aria-label="LinkedIn"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect width="4" height="12" x="2" y="9" />
+        <circle cx="4" cy="4" r="2" />
+      </svg>
+    </a>
+    {/* GitHub */}
+    <a
+      href={socialLinks.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="transition-colors duration-300"
+      style={{ color: 'var(--text-muted)' }}
+      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-orange)')}
+      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+      aria-label="GitHub"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-1.5 6-6.5.08-1.3-.3-2.5-1-3.5.1-.3.1-1 0-1.4a3.5 3.5 0 0 0-1-2.5c-.2-.1-.5-.1-.8.1-.5.2-1 .4-1.5.7C14.3 2.1 13.2 2 12 2s-2.3.1-3.4.7c-.5-.3-1-.5-1.5-.7-.3-.1-.5-.2-.8-.1a3.5 3.5 0 0 0-1 2.5c-.1.4-.1.9 0 1.4-.7 1-1.1 2.2-1 3.5 0 5 3 6.5 6 6.5-1 1-1 2.5-1 3.5V22" />
+      </svg>
+    </a>
+  </div>
+);
+
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,10 +126,14 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['Work', 'About', 'Contact'];
-
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
+
+    if (location.pathname !== '/') {
+      window.location.href = `/${targetId}`;
+      return;
+    }
+
     customSmoothScroll(targetId, 1500);
   };
 
@@ -65,55 +142,61 @@ const Header: React.FC = () => {
       {isVisible && (
         <>
         <motion.header
-          className="fixed top-0 left-0 right-0 z-40"
+          className="fixed top-0 left-0 right-0 z-40 w-full"
           initial={{ y: '-100%' }}
           animate={{
             y: '0%',
-            backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0)',
-            backdropFilter: scrolled ? 'blur(10px)' : 'blur(0px)',
+            backgroundColor: scrolled ? 'var(--bg-glass)' : 'rgba(0, 0, 0, 0)',
+            backdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
           }}
           exit={{ y: '-100%' }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <div className="container mx-auto px-4 sm:px-6 md:px-12 py-4 flex justify-between items-center">
-            <a 
-              href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = '/';
-              }}
-              className="text-3xl sm:text-4xl text-white cursor-pointer"
-              style={{ fontFamily: '"Dr Sugiyama", cursive' }}
-            >
-              Fahad Sikder
-            </a>
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-3 sm:py-4 flex justify-between items-center">
+            {/* Left: Logo + Desktop nav */}
+            <div className="flex items-center space-x-6 sm:space-x-8 min-w-0">
+              <a 
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.href = '/';
+                }}
+                className="text-2xl sm:text-3xl md:text-4xl text-white cursor-pointer whitespace-nowrap font-brand"
+                style={{ fontFamily: 'var(--font-brand)' }}
+              >
+                Fahad Sikder
+              </a>
 
-            {/* Desktop nav */}
-            <nav className="hidden md:flex items-center space-x-4 sm:space-x-8">
-              {navItems.map((item) => {
-                const href = `#${item.toLowerCase()}`;
-                return (
+              {/* Desktop nav: now includes all 5 items from portfolioData */}
+              <nav className="hidden md:flex items-center space-x-4 sm:space-x-8">
+                {navItems.map((item) => (
                   <a
-                    key={item}
-                    href={href}
-                    onClick={(e) => handleNavClick(e, href)}
-                    className="text-white hover:opacity-75 transition-opacity duration-300"
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="text-white transition-colors duration-300 text-sm"
+                    style={{ fontFamily: 'var(--font-body)' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-orange)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
                   >
-                    {item}
+                    {item.label}
                   </a>
-                );
-              })}
-            </nav>
+                ))}
+              </nav>
+            </div>
+
+            {/* Right: Social Links */}
+            <SocialIcons className="hidden md:flex ml-auto" />
 
             {/* Mobile burger button */}
-            <div className="md:hidden flex items-center">
+            <div className="md:hidden flex items-center flex-shrink-0 ml-3">
               <button
                 onClick={() => setMenuOpen(true)}
                 aria-label="Open menu"
                 aria-expanded={menuOpen}
-                className="p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-white"
+                className="p-1.5 sm:p-2 rounded-md text-white hover:text-white/80 focus:outline-none"
               >
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="block">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="block">
                   <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor" />
                   <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor" />
                   <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor" />
@@ -130,7 +213,8 @@ const Header: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center space-y-8 p-6"
+              className="fixed inset-0 z-50 flex flex-col items-center justify-center space-y-8 p-6"
+              style={{ background: 'rgba(0, 0, 0, 0.95)' }}
               aria-modal="true"
               role="dialog"
             >
@@ -151,21 +235,19 @@ const Header: React.FC = () => {
               >
                 Home
               </a>
-              {navItems.map((item) => {
-                const href = `#${item.toLowerCase()}`;
-                return (
-                  <a
-                    key={item}
-                    href={href}
-                    onClick={(e) => { handleNavClick(e, href); setMenuOpen(false); }}
-                    className="text-3xl sm:text-4xl text-white font-semibold tracking-wide"
-                  >
-                    {item}
-                  </a>
-                );
-              })}
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => { handleNavClick(e, item.href); setMenuOpen(false); }}
+                  className="text-3xl sm:text-4xl text-white font-semibold tracking-wide"
+                >
+                  {item.label}
+                </a>
+              ))}
 
-              <a href="#contact" onClick={(e) => { handleNavClick(e, '#contact'); setMenuOpen(false); }} className="mt-6 text-white/80">Get in touch</a>
+              {/* Mobile Social Icons */}
+              <SocialIcons size={24} className="mt-12" />
             </motion.nav>
           )}
         </AnimatePresence>

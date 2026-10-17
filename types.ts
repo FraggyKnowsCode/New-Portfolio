@@ -5,4 +5,5 @@ export type Project = {
   categories: string[];
   imageUrl: string;
   repoUrl: string; // <-- ADD THIS LINE
+  websiteUrl?: string;
 };

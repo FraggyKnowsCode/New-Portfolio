@@ -4,19 +4,24 @@ import Header from './components/Header';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
 import HeroSection from './sections/HeroSection';
-import WorkSection from './sections/WorkSection';
+import ImpactGridSection from './sections/ImpactGridSection';
 import AboutSection from './sections/AboutSection';
+import WorkSection from './sections/WorkSection';
+import MLResearchSection from './sections/MLResearchSection';
 import Footer from './components/Footer';
 import ProjectsPage from './pages/ProjectsPage';
+import MLResearchPage from './pages/MLResearchPage';
 import { AnimatePresence } from 'framer-motion';
 
-const HomePage: React.FC = () => (
+const HomePage: React.FC<{ isLoading: boolean }> = ({ isLoading }) => (
   <>
     <Header />
     <main>
-      <HeroSection />
-      <WorkSection />
+      <HeroSection isLoading={isLoading} />
+      <ImpactGridSection />
       <AboutSection />
+      <WorkSection />
+      <MLResearchSection />
     </main>
     <Footer />
   </>
@@ -26,10 +31,21 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate a loading time
+    // Simulate loading time while assets and video preload underneath
     const timer = setTimeout(() => setLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [loading]);
 
   return (
     <>
@@ -38,16 +54,16 @@ const App: React.FC = () => {
         {loading && <Loader />}
       </AnimatePresence>
       
-      {!loading && (
-        <Router>
-          <div className="text-white min-h-screen font-sans antialiased relative z-10">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-            </Routes>
-          </div>
-        </Router>
-      )}
+      <Router>
+        <div className="text-white min-h-screen font-sans antialiased relative z-10">
+          <Routes>
+            <Route path="/" element={<HomePage isLoading={loading} />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/ml-research" element={<MLResearchPage />} />
+            <Route path="/research" element={<MLResearchPage />} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 };
