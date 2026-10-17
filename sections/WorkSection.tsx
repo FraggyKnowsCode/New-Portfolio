@@ -160,7 +160,7 @@ const WorkSection: React.FC = () => {
                         className="absolute bottom-2 right-2 px-2.5 py-1 text-[10px] uppercase font-mono font-bold tracking-wider bg-black/85 backdrop-blur-md text-white rounded border flex items-center gap-1 shadow-md"
                         style={{ borderColor: 'var(--border-hairline)' }}
                       >
-                        Visit <span>↗</span>
+                        Visit
                       </a>
                     )}
                   </motion.div>
@@ -228,7 +228,7 @@ const WorkSection: React.FC = () => {
                         rel="noopener noreferrer"
                         className="action-link text-[11px] sm:text-[12px]"
                       >
-                        Live Demo <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                        Live Demo
                       </a>
                     )}
                     <a
@@ -237,7 +237,7 @@ const WorkSection: React.FC = () => {
                       rel="noopener noreferrer"
                       className="action-link text-[11px] sm:text-[12px]"
                     >
-                      GitHub <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                      GitHub
                     </a>
                   </motion.div>
                 </motion.div>

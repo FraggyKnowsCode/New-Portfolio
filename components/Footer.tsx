@@ -12,16 +12,19 @@ const easeInOutQuad = (t: number): number => {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 };
 
-const customSmoothScroll = (targetId: string, duration: number = 1500) => {
-  const targetElement = document.querySelector(targetId) as HTMLElement;
-  if (!targetElement) {
-    console.warn(`Target element not found for id: ${targetId}`);
-    return;
+const customSmoothScroll = (targetId: string, duration: number = 1000) => {
+  let targetPosition = 0;
+  if (targetId && targetId !== '#home') {
+    const targetElement = document.querySelector(targetId) as HTMLElement;
+    if (targetElement) {
+      targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+    }
   }
 
-  const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
   const startPosition = window.pageYOffset;
   const distance = targetPosition - startPosition;
+  if (Math.abs(distance) < 2) return;
+
   let startTime: number | null = null;
 
   const animation = (currentTime: number) => {
@@ -119,6 +122,10 @@ const navTargetMap: Record<string, string> = {
 const Footer: React.FC = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
+    if (window.location.pathname !== '/') {
+      window.location.href = `/${targetId}`;
+      return;
+    }
     customSmoothScroll(targetId, 1500);
   };
 
@@ -248,11 +255,24 @@ const Footer: React.FC = () => {
             {contactInfo.copyright}
           </p>
           <button
-            onClick={() => customSmoothScroll('#home', 1500)}
-            className="scroll-top-btn"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="scroll-top-btn flex flex-col items-center justify-center gap-1"
             aria-label="Scroll to top"
           >
-            TOP ↑
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="18 15 12 9 6 15" />
+            </svg>
+            <span>TOP</span>
           </button>
         </div>
       </div>

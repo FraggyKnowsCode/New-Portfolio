@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { projectsDataEnhanced } from '../data/portfolioData';
 import Header from '../components/Header';
@@ -18,6 +18,9 @@ const cardVariants = {
 };
 
 const ProjectsPage: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div style={{ background: 'var(--bg-canvas)' }} className="min-h-screen">
       <Header />
@@ -124,7 +127,7 @@ const ProjectsPage: React.FC = () => {
                         rel="noopener noreferrer"
                         className="action-link text-[12px]"
                       >
-                        Live Demo <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                        Live Demo
                       </a>
                     )}
                     <a
@@ -133,7 +136,7 @@ const ProjectsPage: React.FC = () => {
                       rel="noopener noreferrer"
                       className="action-link text-[12px]"
                     >
-                      GitHub <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                      GitHub
                     </a>
                   </div>
                 </div>

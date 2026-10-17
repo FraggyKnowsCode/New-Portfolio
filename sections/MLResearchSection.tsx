@@ -262,7 +262,7 @@ const MLResearchSection: React.FC = () => {
                         rel="noopener noreferrer"
                         className="action-link text-[12px]"
                       >
-                        View Report <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                        View Report
                       </a>
                       {project.imageUrl && (
                         <button
@@ -270,7 +270,7 @@ const MLResearchSection: React.FC = () => {
                           className="action-link text-[12px] bg-transparent border-0 cursor-pointer"
                           style={{ fontFamily: 'var(--font-body)' }}
                         >
-                          View Presentation Slide <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                          View Presentation Slide
                         </button>
                       )}
                     </div>

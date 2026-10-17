@@ -138,7 +138,7 @@ const ImpactGridSection: React.FC = () => {
               onClick={() => smoothScrollTo(impactMetrics.primary.ctaTarget)}
               className="action-link"
             >
-              {impactMetrics.primary.ctaText} <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+              {impactMetrics.primary.ctaText}
             </button>
           </div>
         </motion.div>

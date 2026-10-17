@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { researchProjects } from '../data/portfolioData';
 import Header from '../components/Header';
@@ -24,6 +24,9 @@ const cardVariants = {
 };
 
 const MLResearchPage: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div style={{ background: 'var(--bg-canvas)' }} className="min-h-screen">
       <Header />
@@ -128,7 +131,7 @@ const MLResearchPage: React.FC = () => {
                           rel="noopener noreferrer"
                           className="action-link text-[12px]"
                         >
-                          View Report <span style={{ color: 'var(--accent-orange)' }}>↗</span>
+                          View Report
                         </a>
                       </div>
                     )}
